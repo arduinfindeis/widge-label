@@ -1,0 +1,11 @@
+# run: conda env create --file environment.yml
+name: widge-label
+channels:
+  - conda-forge
+dependencies:
+  - python=3.6
+  - numpy
+  - pandas
+  - jupyterlab
+  - ipywidgets
+  - nodejs

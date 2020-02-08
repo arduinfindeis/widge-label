@@ -1,0 +1,5 @@
+text,id,other_column,other_other
+"This an example text to annotate using this tool. Is it positive, negative or neutral towards what you are labelling for?",1,other,something
+"This a second example text to annotate using this tool. Is it positive, negative or neutral towards what you are labelling for?",2,other thing,something else
+"This is the text with id 4.",3,other,even more
+"This is the text with id 4.",4,other,and more
