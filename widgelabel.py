@@ -23,24 +23,26 @@ class LabellingClient():
                  emphasis_color="blue",
                  auto_save=False,
                  width = "650px",
-                 hansard_tags = False):
+                 hansard_tags = False,
+                 sentiment_options=['positive', 'slightly positive', 'slightly negative', 'negative']):
         """ Setting up the client.
         
         Parameters
         ----------
-        text_file : Path to the text file to be annotated.
+        text_file : Path to the text file to be annotated
         label_file : Path to the label file where new labels should be appended and saved. 
-            Will be create if it doesn't exist yet.
-        text_key : Name of text column in text_file.
+            Will be create if it doesn't exist yet
+        text_key : Name of text column in text_file
         unique_id_key : Column of unique id for each text, by default "id"
-        additional_cols_names : list, optional; currently unused variable, by default []
+        additional_cols_names : list of additional columns of the text data to show, by default []
         tags_file : Path to the tags file where tags should be saved, optional, by default "default_tags.csv"
         start_index : [type], optional; index of first text to label, by default None
         emphasis_regex : Regular expression to highlight, optional, by default ""
         emphasis_color : Color of highlight, optional, by default "blue"
         auto_save : bool wether to save automatically, optional, by default False
         width : string of pixel width of the widget, optional, by default "650px"
-        hansard_tags: bool whether to use special tags for usage with hasard data set.
+        hansard_tags: bool whether to use special tags for usage with hasard data set
+        sentiment_options: list of sentiments to choose from
         """
         
         self.label_file = label_file
@@ -53,6 +55,7 @@ class LabellingClient():
         self.emphasis_color = emphasis_color
         self.auto_save = auto_save
         self.hansard_tags = hansard_tags
+        self.sentiment_options = sentiment_options
         
         self.width = width
         self.sentiment_button_width = "100px"
@@ -292,7 +295,7 @@ class LabellingClient():
         
         sentiment_buttons = widgets.ToggleButtons(
                 value = self.current_sentiment,
-                options=['positive', 'slightly positive', 'slightly negative', 'negative'],
+                options=self.sentiment_options,
                 description = "Sentiment:",
                 continuous_update = True,
                 style = {"button_width": self.sentiment_button_width, "description_width": "66px"}
