@@ -41,7 +41,7 @@ class LabellingClient():
         emphasis_color : Color of highlight, optional, by default "blue"
         auto_save : bool wether to save automatically, optional, by default False
         width : string of pixel width of the widget, optional, by default "650px"
-        hansard_tags: bool whether to use special tags for usage with hasard data set
+        hansard_tags: bool whether to use special tags for usage with hasard data set (e.g. is_in_gov)
         sentiment_options: list of sentiments to choose from
         """
         
@@ -71,7 +71,7 @@ class LabellingClient():
         self.load_text_data(text_file)
         
         self.sentiment_df = pd.DataFrame(columns=[self.uid_key,"sentiment"])
-        self.relevancy_df = pd.DataFrame(columns=[self.uid_key,"relevancy"])
+        #self.relevancy_df = pd.DataFrame(columns=[self.uid_key,"relevancy"])
         self.tags_df = pd.DataFrame(columns=[self.uid_key,"tags"])
         self.return_later_df = pd.DataFrame(columns=[self.uid_key,"return_later"])
         
@@ -243,13 +243,7 @@ class LabellingClient():
         
         # Set special tags and variables for hansard data
         if self.hansard_tags == True:
-            self.current_date = self.text_df.iloc[text_index]["speech_date"]
-            self.current_relevant = not self.current_eo_id in self.relevancy_df["eo_id"].values
-            self.current_return_later = self.current_eo_id in self.return_later_df["eo_id"].values
-            self.current_time = self.text_df.iloc[text_index]["time"]
             self.current_in_gov = self.check_is_in_gov(text_index)
-            self.current_post_name = self.text_df.iloc[text_index]["post_name"]
-            self.current_proper_name = self.text_df.iloc[text_index]["proper_name"]
         
         self.current_add_cols = {}
         for column in self.additional_cols_names:
