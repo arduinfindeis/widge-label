@@ -320,15 +320,6 @@ class LabellingClient():
                     gov_tag_col = "darkgrey"
                     
                 tag_str += add_tag_format("is_in_gov: {}".format(self.current_in_gov), gov_tag_col)
-                
-                
-                self.current_return_later = True
-                if self.current_return_later:
-                    tag_str += add_tag_format("return&nbsp;later", "navy")
-                    
-                self.current_relevant = True
-                if not self.current_relevant:
-                    tag_str += add_tag_format("not&nbsp;relevant", "navy")
             
             return tag_str
         
